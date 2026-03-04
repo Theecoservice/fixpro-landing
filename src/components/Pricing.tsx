@@ -35,7 +35,7 @@ export default function Pricing() {
             </div>
 
             <p className="mt-3 text-sm text-gray-400">
-              Фіксована ціна незалежно від категорії техніки
+              Єдина ціна для всіх категорій техніки — діє у бета-версії платформи
             </p>
 
             <ul className="mt-8 flex-1 space-y-3">

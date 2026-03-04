@@ -14,8 +14,8 @@ export default function StoreButtons({ className = "", theme = "dark" }: StoreBu
 
   return (
     <div className={`flex flex-wrap items-center gap-3 ${className}`}>
-      {/* App Store */}
-      <a
+      {/* App Store — uncomment when iOS app passes review */}
+      {/* <a
         href="#"
         className={`inline-flex items-center gap-2.5 rounded-xl border ${border} ${bg} px-5 py-3 transition-colors ${hover}`}
       >
@@ -26,11 +26,13 @@ export default function StoreButtons({ className = "", theme = "dark" }: StoreBu
           <span className={`text-[10px] leading-none ${subtext}`}>Завантажити в</span>
           <span className={`text-sm font-semibold leading-tight ${text}`}>App Store</span>
         </div>
-      </a>
+      </a> */}
 
       {/* Google Play */}
       <a
-        href="#"
+        href="https://play.google.com/store/apps/details?id=com.fixpro.app"
+        target="_blank"
+        rel="noopener noreferrer"
         className={`inline-flex items-center gap-2.5 rounded-xl border ${border} ${bg} px-5 py-3 transition-colors ${hover}`}
       >
         <Image

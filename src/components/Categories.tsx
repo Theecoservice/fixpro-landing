@@ -57,17 +57,6 @@ const categories = [
     ),
   },
   {
-    name: "Мікрохвильовки",
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="4" width="20" height="15" rx="2" />
-        <rect x="4" y="6" width="12" height="11" rx="1" />
-        <circle cx="19" cy="9" r="1" fill="currentColor" stroke="none" />
-        <circle cx="19" cy="13" r="1" fill="currentColor" stroke="none" />
-      </svg>
-    ),
-  },
-  {
     name: "Плити та духовки",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
