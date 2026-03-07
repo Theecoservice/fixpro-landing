@@ -111,7 +111,7 @@ export default function Pricing() {
             </ul>
 
             <a
-              href="mailto:partners@fixpro.ua"
+              href="mailto:contact@fixapp.pro"
               className="mt-8 block rounded-full bg-black py-3.5 text-center text-sm font-semibold text-white transition-all hover:bg-gray-800"
             >
               Отримати пропозицію
