@@ -28,10 +28,20 @@ Single-page landing. `src/app/page.tsx` composes all sections in order:
 
 All section components live in `src/components/`. Client components (`"use client"`):
 - `Header.tsx` — mobile menu toggle
-- `Hero.tsx` — registration form state (phone, city, tech category)
+- `Hero.tsx` — registration form with submission (phone, city, tech category)
 - `FAQ.tsx` — accordion open/close state
 
 `StoreButtons.tsx` is a shared component used in Hero, Pricing, and FAQ — accepts `theme="dark"` (default, white text/icons on dark bg) or `theme="light"` (black text/icons on white bg).
+
+### Cloudflare Pages Functions
+
+`functions/api/lead.ts` — serverless endpoint (`POST /api/lead`) that:
+- Receives lead form submissions (phone, city, category)
+- Validates all fields are present
+- Sends formatted message to Telegram group via Bot API
+- Uses env variables: `TG_BOT_TOKEN`, `TG_CHAT_ID` (configured in Cloudflare Pages dashboard)
+- Has its own `functions/tsconfig.json` with `@cloudflare/workers-types`
+- Excluded from main `tsconfig.json` to avoid type conflicts with Next.js
 
 ## Design System
 
@@ -45,14 +55,16 @@ All section components live in `src/components/`. Client components (`"use clien
 ## Business Context
 
 - Masters pay fixed 400 UAH per lead (no subscription)
-- Service centers get custom commercial offers via `partners@fixpro.ua`
+- Service centers get custom commercial offers via `contact@fixapp.pro`
 - No payment processing — pure lead generation
-- `VideoSection` currently has a placeholder (no video URL yet)
-- Hero form collects phone + city + tech category — currently `preventDefault()` only, no backend
+- Hero form collects phone + city + tech category → sends to Telegram group
+- Phone input validates: digits and leading `+` only
+- App Store button commented out in `StoreButtons.tsx` (awaiting iOS review)
 
 ## Static Assets
 
 - `public/logo.png` — blue shield with wrench (brand logo)
 - `public/phone-mockup.png` — 3D iPhone mockup (used in Hero, desktop only)
 - `public/google-play-icon.png` — Google Play icon (black, inverted to white on dark theme via Tailwind `invert`)
+- `public/video.mp4` — promo video (used in VideoSection)
 - `images.unoptimized: true` in `next.config.ts` — required for static export compatibility

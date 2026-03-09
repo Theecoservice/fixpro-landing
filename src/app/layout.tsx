@@ -7,10 +7,37 @@ const inter = Inter({
   subsets: ["latin", "cyrillic"],
 });
 
+const siteUrl = "https://fixpro-landing.pages.dev";
+
 export const metadata: Metadata = {
   title: "FixPro — Більше замовлень. Більший дохід.",
   description:
     "Платформа, яка приносить заявки на ремонт побутової техніки — без холодних дзвінків і реклами",
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    title: "FixPro — Більше замовлень. Більший дохід.",
+    description:
+      "Платформа, яка приносить заявки на ремонт побутової техніки — без холодних дзвінків і реклами",
+    url: siteUrl,
+    siteName: "FixPro",
+    locale: "uk_UA",
+    type: "website",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "FixPro — заявки на ремонт побутової техніки",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FixPro — Більше замовлень. Більший дохід.",
+    description:
+      "Платформа, яка приносить заявки на ремонт побутової техніки — без холодних дзвінків і реклами",
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({

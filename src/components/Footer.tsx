@@ -43,13 +43,17 @@ export default function Footer() {
                 Підтримка
               </h4>
               <nav className="flex flex-col gap-2.5">
-                {["Допомога", "Контакти", "Політика"].map((item) => (
+                {[
+                  ["Допомога", "mailto:contact@fixapp.pro"],
+                  ["Контакти", "mailto:contact@fixapp.pro"],
+                  ["Політика", "/privacy"],
+                ].map(([label, href]) => (
                   <a
-                    key={item}
-                    href="#"
+                    key={label}
+                    href={href}
                     className="text-sm text-gray-500 hover:text-black"
                   >
-                    {item}
+                    {label}
                   </a>
                 ))}
               </nav>
