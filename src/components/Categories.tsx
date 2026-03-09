@@ -90,11 +90,11 @@ export default function Categories() {
           Категорії техніки, на які приходять заявки
         </p>
 
-        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
           {categories.map((c, i) => (
             <div
               key={i}
-              className="flex flex-col items-center gap-2.5 rounded-2xl border border-gray-100 bg-[#f7f8fa] px-3 py-5 transition-colors hover:border-gray-200"
+              className="flex w-[calc(50%-0.5rem)] flex-col items-center gap-2.5 rounded-2xl border border-gray-100 bg-[#f7f8fa] px-3 py-5 transition-colors hover:border-gray-200 sm:w-[calc(25%-0.75rem)] lg:w-[calc(14.285%-0.875rem)]"
             >
               <div className="text-gray-600">{c.icon}</div>
               <span className="text-center text-xs font-medium leading-tight text-gray-600">

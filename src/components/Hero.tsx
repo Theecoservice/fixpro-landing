@@ -10,10 +10,8 @@ const techCategories = [
   "Посудомийки",
   "Бойлери",
   "Кондиціонери",
-  "Мікрохвильовки",
   "Плити та духовки",
   "Сушильні машини",
-  "Газові котли",
   "Інше",
 ];
 
@@ -21,6 +19,27 @@ export default function Hero() {
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
   const [category, setCategory] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!phone || !city || !category) return;
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone, city, category }),
+      });
+      if (!res.ok) throw new Error();
+      setStatus("sent");
+      setPhone("");
+      setCity("");
+      setCategory("");
+    } catch {
+      setStatus("error");
+    }
+  }
 
   return (
     <section className="relative overflow-hidden bg-[#f7f8fa] pt-24 pb-16 sm:pt-32 sm:pb-20 lg:pb-24">
@@ -41,7 +60,7 @@ export default function Hero() {
 
             {/* Registration form */}
             <form
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit}
               className="mx-auto mt-10 max-w-md lg:mx-0"
             >
               <div className="flex flex-col gap-2.5 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition-shadow focus-within:shadow-md">
@@ -49,7 +68,10 @@ export default function Hero() {
                   type="tel"
                   placeholder="+380 __ ___ ____"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/[^\d+]/g, "").replace(/(?!^)\+/g, "");
+                    setPhone(val);
+                  }}
                   className="rounded-xl border border-gray-100 bg-[#f7f8fa] px-4 py-3 text-sm outline-none transition-colors placeholder:text-gray-400 focus:border-gray-300"
                 />
                 <div className="flex gap-2.5">
@@ -74,10 +96,14 @@ export default function Hero() {
                 </div>
                 <button
                   type="submit"
-                  className="rounded-xl bg-black py-3 text-sm font-semibold text-white transition-all hover:bg-gray-800"
+                  disabled={status === "sending" || status === "sent"}
+                  className="rounded-xl bg-black py-3 text-sm font-semibold text-white transition-all hover:bg-gray-800 disabled:opacity-50"
                 >
-                  Почати отримувати заявки
+                  {status === "sending" ? "Надсилаємо..." : status === "sent" ? "Заявку надіслано!" : "Почати отримувати заявки"}
                 </button>
+                {status === "error" && (
+                  <p className="text-center text-xs text-red-500">Щось пішло не так. Спробуйте ще раз.</p>
+                )}
               </div>
             </form>
 
